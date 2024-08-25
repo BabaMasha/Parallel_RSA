@@ -2,6 +2,7 @@
 #include "prime.h"
 #include "mpi.h"
 #include "sort.h"
+#include "calc.h"
 
 //#define TEST FALSE
 //#define TESTIT FALSE

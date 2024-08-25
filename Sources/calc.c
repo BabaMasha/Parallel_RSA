@@ -1,6 +1,8 @@
 #include "calc.h"
 #include "prime.h"
 #include <mpi.h>
+#include "mpifft.h"
+
 //x*2 = res = x+x;
 void paraMultBy2(IEEE_754_FloatNum *x,
 				  IEEE_754_FloatNum *res,

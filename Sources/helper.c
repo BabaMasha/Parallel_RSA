@@ -85,17 +85,28 @@ void toIEEE_754(UINT32 intNumber,
 
 char* makeFileName(char *input, int keyLength)
 {
-	char* first = "KEYS/";
-	char middle[1];
-	int i = keyLength;
-	sprintf(middle,"%d", i);
-	char* second = ".txt";
-	char* both = malloc(strlen(first) + strlen(input) + strlen(middle) + strlen(second) + 1);
-	strcpy(both, first);
-	strcat(both, input);
-	strcat(both, middle);
-	strcat(both, second);
-	return both;
+    char* first = "KEYS/";
+    char middle[12];  // Assuming keyLength can be up to a very large number (e.g., up to 10 digits plus null terminator)
+    
+    sprintf(middle, "%d", keyLength);
+
+    char* second = ".txt";
+
+    // Allocate memory for the combined string
+    char* both = malloc(strlen(first) + strlen(input) + strlen(middle) + strlen(second) + 1);
+    
+    // Check if memory allocation was successful
+    if (both == NULL) {
+        return NULL;  // Return NULL if malloc failed
+    }
+
+    // Build the final string
+    strcpy(both, first);
+    strcat(both, input);
+    strcat(both, middle);
+    strcat(both, second);
+
+    return both;
 }
 
 int min( int a, int b){
@@ -193,6 +204,7 @@ BOOLEAN smallerOne_IEEE(IEEE_754_FloatNum *a, UINT32 numProcs, UINT32 procID)
 {
 	UINT32 firstDig = 0;
 	// if a->sign == TRUE
+	
 	if( a->sign == TRUE )
 	{
 		return FALSE;
@@ -227,6 +239,7 @@ BOOLEAN smallerOne_IEEE(IEEE_754_FloatNum *a, UINT32 numProcs, UINT32 procID)
 			return FALSE;
 		}
 	}
+	return FALSE;
 }
 
 
