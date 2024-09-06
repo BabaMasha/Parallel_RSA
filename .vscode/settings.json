@@ -1,5 +1,5 @@
 {
-    "makefile.makefilePath": "${workspaceFolder}/Makefile",
+    "makefile.makefilePath": "${workspaceFolder}/Sources/Makefile",
     "makefile.configureOnOpen": false,
     "r.lsp.promptToInstall": false
 }
