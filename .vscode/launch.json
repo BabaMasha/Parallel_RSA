@@ -7,7 +7,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/Sources/rsa", // Replace with your executable
             "args": [
-                "mpirun", 
+                "/usr/local/bin/mpirun", 
                 "-n", 
                 "1", // Number of processes
                 "--debug",
@@ -15,16 +15,16 @@
                 "--args",
                 "${workspaceFolder}/Sources/rsa"
             ],
-            "stopAtEntry": false,
+            "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "externalConsole": false,
+            "externalConsole": true,
             "MIMode": "gdb",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
                     "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
+                    "ignoreFailures": false
                 }
             ],
             "preLaunchTask": "build", // Assuming you have a build task set up

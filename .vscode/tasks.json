@@ -7,7 +7,7 @@
             "command": "make", // Command to invoke make
             "args": [
                 "-C", "Sources", // Change directory to the "Sources" folder
-                "all" // You can specify the make target (e.g., "all" or "clean")
+                "debug" // You can specify the make target (e.g., "all" or "clean")
             ],
             "group": {
                 "kind": "build",
