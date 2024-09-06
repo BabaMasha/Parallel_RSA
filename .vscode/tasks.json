@@ -1,0 +1,34 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build", // Task label referenced in launch.json
+            "type": "shell",
+            "command": "make", // Command to invoke make
+            "args": [
+                "-C", "Sources", // Change directory to the "Sources" folder
+                "all" // You can specify the make target (e.g., "all" or "clean")
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"], // Matches problems reported by GCC
+            "detail": "Build the project using Makefile"
+        },
+        {
+            "label": "clean", // Optional: Clean task for removing build artifacts
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "-C", "Sources", // Change directory to the "Sources" folder
+                "clean"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        }
+    ]
+}
