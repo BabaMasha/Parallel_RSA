@@ -468,9 +468,21 @@ void read_IEEE_754_FloatNum(IEEE_754_FloatNum *number, UINT32 numProcs, UINT32 p
 	char drei=0;
 	char num=0;
 	char CR=0;
+
+	if (array == NULL) {
+        perror("Error allocating memory");
+        return;
+    }
+
 	if(procID == 0)
 	{
-		fh = fopen( fileName, "rt" );
+		fh = fopen(fileName, "rt");
+        if (fh == NULL) {
+            fprintf(stderr, "Error opening file %s\n", fileName);
+            free(array);
+            return;
+        }
+
 		while( ! feof(fh) )
 		{
 			fscanf (fh, "%c", &CR);
@@ -481,8 +493,13 @@ void read_IEEE_754_FloatNum(IEEE_754_FloatNum *number, UINT32 numProcs, UINT32 p
 
 		}
 		
-		
-		fscanf (fh, "%c", &drei);
+		// Read the character after exponent
+        if (fscanf(fh, "%c", &drei) != 1) {
+            fprintf(stderr, "Error reading character after exponent from file %s\n", fileName);
+            fclose(fh);
+            free(array);
+            return;
+        }
 		k=0;
 		
 		while(k<(number->precision))
@@ -493,7 +510,12 @@ void read_IEEE_754_FloatNum(IEEE_754_FloatNum *number, UINT32 numProcs, UINT32 p
 			{
 				for(i = 0; i < size; i++)
 				{
-					fscanf (fh, "%c", &num);
+					if (fscanf(fh, "%c", &num) != 1) {
+                    perror("Error reading file");
+                    fclose(fh);
+                    free(array);
+                    return;
+                }
 					j=j/10;
 					
 					array[k] += j * (UINT32)(num-'0');
